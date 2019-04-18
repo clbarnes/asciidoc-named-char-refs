@@ -1,0 +1,68 @@
+= asciidoc-refs
+
+A file of attributes to allow named references to be used, based on W3C HTML5.2 named character references.
+
+https://www.w3.org/TR/html52/syntax.html#named-character-references
+
+== Rationale
+
+Asciidoctor supports HTML named character references, as well as decimal and hex.
+`asciidoctor-pdf` https://github.com/asciidoctor/asciidoctor-pdf/issues/954[does not] (besides `lt`, `gt`, `amp`, `quot`, and `apos`), for good reasons, from a parser perspective.
+The recommended workaround is to define attributes in your header for symbols you use a lot.
+This is a file which can be ``include::``d in your header block which establishes many references for you.
+
+== Serialisation
+
+There are lots of names, and they are generic by design.
+In order to distinguish character references from your other attributes, `-` is appended to the end.
+
+AsciiDoc attributes are case-insensitive, but named character references are not.
+Blocks of capitals in names are surrounded with `_`.
+
+For convenience, cases where capitalisation is not required for uniqueness (i.e. the lower-case version is not also a name), the lower-case version is also included.
+
+[source,asciidoc]
+----
+:_A_acute-: &193;
+:aacute-: &225;
+// ...
+:boxvr-: &9500;
+:boxv_R_-: &9566;
+:box_V_r-: &9567;
+:box_VR_-: &9568;
+// ...
+:capitaldifferentiald-: &8517;
+:_C_apital_D_ifferential_D_-: &8517;
+// ...
+----
+
+== Usage
+
+[source,asciidoc]
+----
+= A test file
+:author: clbarnes
+:doctype: article
+:reproducible:
+:source-highlighter: coderay
+\include::character_refs.adoc[]
+
+.Here are some test characters:
+* {dagger-} // <1>
+* {aacute-}
+* {_A_acute-} // <2>
+* {_a_acute-} (should look the same as above)  // <3>
+* {\_C_apital_D_ifferential_D_-}  // <4>
+* {capitaldifferentiald-} (should look the same as above)  // <5>
+----
+<1> Note the trailing `-`
+<2> Capitals are surrounded by underscores
+<3> But letters are actually case insensitive
+<4> If an attribute starts and ends with an underscore, the first must be escaped
+<5> Lower-case for convenience
+
+== N.B.
+
+Most fonts do not have most unicode characters!
+Just because you can encode a character as decimal, doesn't mean your PDF knows how to display it.
+The default asciidoctor-pdf font does not have `\&CapitalDifferentialD;`, for example.

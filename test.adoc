@@ -1,0 +1,14 @@
+= A test file
+:author: clbarnes
+:doctype: article
+:reproducible:
+:source-highlighter: coderay
+include::character_refs.adoc[]
+
+.Here are some test characters:
+* {dagger-}
+* {aacute-}
+* {_A_acute-}
+* {_a_acute-} (should look the same as above)
+* {\_C_apital_D_ifferential_D_-}
+* {capitaldifferentiald-} (should look the same as above)
