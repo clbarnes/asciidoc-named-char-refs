@@ -4,6 +4,8 @@ cache: bundler
 before_install:
   - gem update --system
   - gem install bundler
+# how to find this programmatically?
+before_script: export PATH="./vendor/bundle/ruby/2.6.0/bin:$PATH"
 script:
   # check whether conversion produces stored result
   - ./convert.rb converted.adoc
