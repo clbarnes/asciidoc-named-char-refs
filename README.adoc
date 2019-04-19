@@ -1,4 +1,4 @@
-= asciidoc-refs
+= asciidoc-named-char-refs
 
 A file of attributes to allow named references to be used, based on W3C HTML5.2 named character references.
 
@@ -16,10 +16,10 @@ This is a file which can be ``include::``d in your header block which establishe
 There are lots of names, and they are generic by design.
 In order to distinguish character references from your other attributes, `-` is appended to the end.
 
-AsciiDoc attributes are case-insensitive, but named character references are not.
-Blocks of capitals in names are surrounded with `_`.
+Named character references are case-sensitive, but AsciiDoc attributes are not.
+Therefore, blocks of capitals in names are surrounded with `_`.
 
-For convenience, cases where capitalisation is not required for uniqueness (i.e. the lower-case version is not also a name), the lower-case version is also included.
+For convenience, cases where capitalisation exists but is not required for uniqueness (i.e. the lower-case version is not also a name), the lower-case version with no underscores is also included.
 
 [source,asciidoc]
 ----
@@ -58,7 +58,7 @@ For convenience, cases where capitalisation is not required for uniqueness (i.e.
 <1> Note the trailing `-`
 <2> Capitals are surrounded by underscores
 <3> But letters are actually case insensitive
-<4> If an attribute starts and ends with an underscore, the first must be escaped
+<4> If an attribute starts and ends with a capitals, and therefore underscores, the first must be escaped
 <5> Lower-case for convenience
 
 == N.B.
