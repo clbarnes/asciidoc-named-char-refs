@@ -12,4 +12,4 @@ script:
   - cmp character_refs.adoc converted.adoc
   # check whether asciidoctor-pdf can convert the test file without parse failure
   - bash -c "bundle exec asciidoctor-pdf --verbose --failure-level=WARN test.adoc -o test.pdf" 2>&1 log.txt
-  - test "$(grep 'Failed' log.txt)"
+  - `[[ ! -f "log.txt" || ! "$(grep 'Failed' log.txt)" ]]`
